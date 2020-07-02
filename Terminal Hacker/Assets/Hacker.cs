@@ -72,7 +72,8 @@ public class Hacker : MonoBehaviour
             case "3":
                 {
                     int.TryParse(input, out level);
-                    StartGame();
+                    password = GetRandomPassword();
+                    PromptForPassword();
                     break;
                 }
             case "007":  // Easter egg
@@ -92,19 +93,39 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-            Lose();
+            PromptForPassword();
         }
     }
 
-    string GetPassword()
+    string GetRandomPassword()
     {
         switch (level)
         {
-            case 1: return level1Passwords[0];  // TODO make random
-            case 2: return level2Passwords[0];
-            case 3: return level3Passwords[0];
+            case 1:
+                {
+                    int index = UnityEngine.Random.Range(0, level1Passwords.Length - 1);
+                    return level1Passwords[index];
+                }
+            case 2:
+                {
+                    int index = UnityEngine.Random.Range(0, level2Passwords.Length - 1);
+                    return level2Passwords[index];
+                }
+            case 3:
+                {
+                    int index = UnityEngine.Random.Range(0, level3Passwords.Length - 1);
+                    return level3Passwords[index];
+                }
             default: return "";
         }
+    }
+
+    private void PromptForPassword()
+    {
+        currentScreen = Screen.Password;
+
+        Terminal.ClearScreen();
+        Terminal.WriteLine($"Enter your password, hint: {password.Anagram()}");
     }
 
     private void Win()
@@ -131,19 +152,5 @@ public class Hacker : MonoBehaviour
                 Terminal.WriteLine("Welcome to the NSA");
                 break;
         }
-    }
-
-    private void Lose()
-    {
-        Terminal.WriteLine("Wrong password! Try again.");
-    }
-
-    private void StartGame()
-    {
-        currentScreen = Screen.Password;
-        password = GetPassword();
-
-        Terminal.ClearScreen();
-        Terminal.WriteLine("Please enter your password");
     }
 }
