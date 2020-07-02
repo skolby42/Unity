@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
+    // Game state
+    int level;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,14 +31,23 @@ public class Hacker : MonoBehaviour
         switch (input)
         {
             case "1":
-                Terminal.WriteLine("Hacking School");
-                break;
+                {
+                    level = 1;
+                    StartGame();
+                    break;
+                }
             case "2":
-                Terminal.WriteLine("Hacking Police Station");
-                break;
+                {
+                    level = 2;
+                    StartGame();
+                    break;
+                }
             case "3":
-                Terminal.WriteLine("Hacking NSA");
-                break;
+                {
+                    level = 3;
+                    StartGame();
+                    break;
+                }
             case "007":
                 Terminal.WriteLine("Please make a selection, Mr. Bond");
                 break;
@@ -48,5 +60,10 @@ public class Hacker : MonoBehaviour
                 Terminal.WriteLine("Please enter a valid input.");
                 break;
         }
+    }
+
+    private void StartGame()
+    {
+        Terminal.WriteLine($"You have chosen level {level}");
     }
 }
