@@ -103,17 +103,17 @@ public class Hacker : MonoBehaviour
         {
             case 1:
                 {
-                    int index = UnityEngine.Random.Range(0, level1Passwords.Length - 1);
+                    int index = UnityEngine.Random.Range(0, level1Passwords.Length);
                     return level1Passwords[index];
                 }
             case 2:
                 {
-                    int index = UnityEngine.Random.Range(0, level2Passwords.Length - 1);
+                    int index = UnityEngine.Random.Range(0, level2Passwords.Length);
                     return level2Passwords[index];
                 }
             case 3:
                 {
-                    int index = UnityEngine.Random.Range(0, level3Passwords.Length - 1);
+                    int index = UnityEngine.Random.Range(0, level3Passwords.Length);
                     return level3Passwords[index];
                 }
             default: return "";
