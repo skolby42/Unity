@@ -12,6 +12,10 @@ enum Screen
 
 public class Hacker : MonoBehaviour
 {
+    string[] level1Passwords = { "bell", "book", "pen", "study", "yard" };
+    string[] level2Passwords = { "arrest", "enforce", "protect", "ridealong", "uniform" };
+    string[] level3Passwords = { "cryptography", "hackathon", "listening", "monitoring", "surveillance" };
+
     // Game state
     int level;
     string password;
@@ -97,21 +101,9 @@ public class Hacker : MonoBehaviour
     {
         switch (level)
         {
-            case 1:
-                {
-                    string[] passwords = { "bell", "book", "pen", "study", "yard" };
-                    return passwords[0];
-                }
-            case 2:
-                {
-                    string[] passwords = { "arrest", "enforce", "protect", "ridealong", "uniform" };
-                    return passwords[0];
-                }
-            case 3:
-                {
-                    string[] passwords = { "cryptography", "hackathon", "listening", "monitoring", "surveillance" };
-                    return passwords[0];
-                }
+            case 1: return level1Passwords[0];  // TODO make random
+            case 2: return level2Passwords[0];
+            case 3: return level3Passwords[0];
             default: return "";
         }
     }
