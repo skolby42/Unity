@@ -14,7 +14,8 @@ public class Hacker : MonoBehaviour
 {
     // Game state
     int level;
-    Screen currentScreen = Screen.MainMenu;
+    string password;
+    Screen currentScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,12 @@ public class Hacker : MonoBehaviour
 
     private void OnUserInput(string input)
     {
+        if (currentScreen == Screen.Win)
+        {
+            ShowMainMenu();
+            return;
+        }
+
         if (string.IsNullOrEmpty(input)) return;
 
         if (input.Equals("menu", StringComparison.OrdinalIgnoreCase))
@@ -61,6 +68,7 @@ public class Hacker : MonoBehaviour
             case "3":
                 {
                     int.TryParse(input, out level);
+                    password = GetPassword();
                     StartGame();
                     break;
                 }
@@ -75,7 +83,61 @@ public class Hacker : MonoBehaviour
 
     private void CheckPassword(string input)
     {
-        
+        if (input == password)
+        {
+            Win();
+        }
+        else
+        {
+            Lose();
+        }
+    }
+
+    string GetPassword()
+    {
+        switch (level)
+        {
+            case 1:
+                {
+                    string[] passwords = { "bell", "book", "pen", "study", "yard" };
+                    return passwords[0];
+                }
+            case 2:
+                {
+                    string[] passwords = { "arrest", "enforce", "protect", "ridealong", "uniform" };
+                    return passwords[0];
+                }
+            case 3:
+                {
+                    string[] passwords = { "cryptography", "hackathon", "listening", "monitoring", "surveillance" };
+                    return passwords[0];
+                }
+            default: return "";
+        }
+    }
+
+    private void Win()
+    {
+        currentScreen = Screen.Win;
+
+        Terminal.WriteLine($"Correct password!");
+
+        switch (level)
+        {
+            case 1: Terminal.WriteLine("Time to change some grades");
+                break;
+            case 2: Terminal.WriteLine("Welcome to the police network");
+                break;
+            case 3: Terminal.WriteLine("Welcome to the NSA");
+                break;
+        }
+
+        Terminal.WriteLine("Press enter to play again");
+    }
+
+    private void Lose()
+    {
+        Terminal.WriteLine("Wrong password! Try again.");
     }
 
     private void StartGame()
