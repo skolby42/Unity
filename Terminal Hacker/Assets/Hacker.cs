@@ -72,11 +72,10 @@ public class Hacker : MonoBehaviour
             case "3":
                 {
                     int.TryParse(input, out level);
-                    password = GetPassword();
                     StartGame();
                     break;
                 }
-            case "007":
+            case "007":  // Easter egg
                 Terminal.WriteLine("Please make a selection, Mr. Bond");
                 break;
             default:
@@ -113,18 +112,25 @@ public class Hacker : MonoBehaviour
         currentScreen = Screen.Win;
 
         Terminal.WriteLine($"Correct password!");
-
-        switch (level)
-        {
-            case 1: Terminal.WriteLine("Time to change some grades");
-                break;
-            case 2: Terminal.WriteLine("Welcome to the police network");
-                break;
-            case 3: Terminal.WriteLine("Welcome to the NSA");
-                break;
-        }
+        PrintLevelWinMessage();
 
         Terminal.WriteLine("Press enter to play again");
+    }
+
+    private void PrintLevelWinMessage()
+    {
+        switch (level)
+        {
+            case 1:
+                Terminal.WriteLine("Time to change some grades");
+                break;
+            case 2:
+                Terminal.WriteLine("Welcome to the police network");
+                break;
+            case 3:
+                Terminal.WriteLine("Welcome to the NSA");
+                break;
+        }
     }
 
     private void Lose()
@@ -135,7 +141,9 @@ public class Hacker : MonoBehaviour
     private void StartGame()
     {
         currentScreen = Screen.Password;
-        Terminal.WriteLine($"You have chosen level {level}");
+        password = GetPassword();
+
+        Terminal.ClearScreen();
         Terminal.WriteLine("Please enter your password");
     }
 }
