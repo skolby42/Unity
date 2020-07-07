@@ -6,18 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
-    [SerializeField]
-    private float mainThrust = 750.0f;
-    [SerializeField]
-    private float rcsThrust = 250.0f;
-    [SerializeField]
-    private float levelLoadTime = 1.0f;
-    [SerializeField]
-    private AudioClip mainEngineClip = null;
-    [SerializeField]
-    private AudioClip deathClip = null;
-    [SerializeField]
-    private AudioClip levelSuccessClip = null;
+    [SerializeField] private float mainThrust = 750.0f;
+    [SerializeField] private float rcsThrust = 250.0f;
+    [SerializeField] private float levelLoadTime = 1.0f;
+
+    [SerializeField] private AudioClip mainEngineClip = null;
+    [SerializeField] private AudioClip deathClip = null;
+    [SerializeField] private AudioClip levelSuccessClip = null;
+
+    [SerializeField] private ParticleSystem mainEngineParticles = null;
+    [SerializeField] private ParticleSystem deathParticles = null;
+    [SerializeField] private ParticleSystem levelSuccessParticles = null;
 
     private Rigidbody rigidBody;
     private AudioSource audioSource;
@@ -65,6 +64,7 @@ public class Rocket : MonoBehaviour
         currentState = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(levelSuccessClip);
+        levelSuccessParticles.Play();
         Invoke("LoadNextLevel", levelLoadTime);
     }
 
@@ -73,6 +73,13 @@ public class Rocket : MonoBehaviour
         currentState = State.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(deathClip);
+
+        if (mainEngineParticles.isPlaying)
+        {
+            mainEngineParticles.Stop();
+        }
+        
+        deathParticles.Play();
         Invoke("LoadFirstLevel", levelLoadTime);
     }
 
@@ -100,6 +107,10 @@ public class Rocket : MonoBehaviour
         else
         {
             audioSource.Stop();
+            if (mainEngineParticles.isPlaying)
+            {
+                mainEngineParticles.Stop();
+            }
         }
     }
 
@@ -111,6 +122,11 @@ public class Rocket : MonoBehaviour
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngineClip);
+        }
+
+        if (!mainEngineParticles.isPlaying)
+        {
+            mainEngineParticles.Play();
         }
     }
 
