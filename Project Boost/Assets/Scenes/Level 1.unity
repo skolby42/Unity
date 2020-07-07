@@ -692,11 +692,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 9080143645562345935, guid: 58987e21bf32cac4db57caef069cd356,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58987e21bf32cac4db57caef069cd356, type: 3}
 --- !u!1001 &1744372478
@@ -996,6 +991,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1891003267}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1893453969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5125819616363847975, guid: 6213175490015684b817b5ba97af7dc8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1126090025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1893453970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893453969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7d63954c0f46343a9243a56426afcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 5, y: 0, z: 0}
+  period: 5
 --- !u!1001 &1945393088
 PrefabInstance:
   m_ObjectHideFlags: 0
