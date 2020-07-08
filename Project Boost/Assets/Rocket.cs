@@ -112,6 +112,11 @@ public class Rocket : MonoBehaviour
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         sceneIndex++;
 
+        if (sceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            sceneIndex = 0;  // Restart game
+        }
+
         SceneManager.LoadScene(sceneIndex);
     }
 
