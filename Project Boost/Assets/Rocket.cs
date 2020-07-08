@@ -21,6 +21,7 @@ public class Rocket : MonoBehaviour
     private Rigidbody rigidBody;
     private AudioSource audioSource;
     private State currentState;
+    private bool collisionEnabled = true;
 
     enum State
     {
@@ -40,11 +41,29 @@ public class Rocket : MonoBehaviour
     {
         RespondToThrustInput();
         RespondToRotationInput();
+        RespondToDebugKeys();
+    }
+
+    private void RespondToDebugKeys()
+    {
+        if (!Debug.isDebugBuild) return;
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionEnabled = !collisionEnabled;
+            print($"Collision enabled: {collisionEnabled}");
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (currentState != State.Alive) return;
+        if (!collisionEnabled) return;
 
         switch (collision.gameObject.tag)
         {
