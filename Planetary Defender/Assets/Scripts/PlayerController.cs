@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] [Tooltip("In ms^-1")] float movementSpeed = 5f;
+    [Header("General")]
+    [SerializeField] [Tooltip("In ms^-1")] float controlSpeed = 5f;
     [SerializeField] float xMaxOffset = 3f;
     [SerializeField] float yMaxOffset = 2.5f;
+
+    [Header("Screen Position Based")]
     [SerializeField] float positionPitchFactor = -5f;
     [SerializeField] float positionYawFactor = 5f;
+
+    [Header("Control Throw Based")]
     [SerializeField] float controlPitchFactor = -15f;
     [SerializeField] float controlRollFactor = -15f;
 
-    void Start()
-    {
-        
-    }
+    bool controlsEnabled = true;
 
     void Update()
     {
@@ -27,8 +29,10 @@ public class Player : MonoBehaviour
 
     private void ProcessTranslation()
     {
-        float xOffset = CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        float yOffset = CrossPlatformInputManager.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        if (!controlsEnabled) return;
+
+        float xOffset = CrossPlatformInputManager.GetAxis("Horizontal") * controlSpeed * Time.deltaTime;
+        float yOffset = CrossPlatformInputManager.GetAxis("Vertical") * controlSpeed * Time.deltaTime;
 
         float newXPos = Mathf.Clamp(transform.localPosition.x + xOffset, -xMaxOffset, xMaxOffset);
         float newYPos = Mathf.Clamp(transform.localPosition.y + yOffset, -yMaxOffset, yMaxOffset);
@@ -38,6 +42,8 @@ public class Player : MonoBehaviour
 
     private void ProcessRotation()
     {
+        if (!controlsEnabled) return;
+
         float positionPitch = transform.localPosition.y * positionPitchFactor;
         float positionYaw = transform.localPosition.x * positionYawFactor;
 
@@ -45,5 +51,11 @@ public class Player : MonoBehaviour
         float controlRoll = CrossPlatformInputManager.GetAxis("Horizontal") * controlRollFactor;
 
         transform.localRotation = Quaternion.Euler(positionPitch + controlPitch, positionYaw, controlRoll);
+    }
+
+    private void OnPlayerDeath()
+    {
+        print("Controls disabled");
+        controlsEnabled = false;
     }
 }
