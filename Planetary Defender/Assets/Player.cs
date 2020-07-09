@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] [Tooltip("In ms^-1")] float xSpeed = 5f;
-    [SerializeField] [Tooltip("In ms^-1")] float ySpeed = 5f;
+    [SerializeField] [Tooltip("In ms^-1")] float movementSpeed = 5f;
     [SerializeField] float xMaxOffset = 3f;
-    [SerializeField] float yMaxOffset = 2f;
+    [SerializeField] float yMaxOffset = 2.5f;
+    [SerializeField] float positionPitchFactor = -5f;
+    [SerializeField] float positionYawFactor = 5f;
+    [SerializeField] float controlPitchFactor = -15f;
+    [SerializeField] float controlRollFactor = -15f;
 
     void Start()
     {
@@ -17,25 +21,29 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        RespondToHorizontalInput();
-        RespondToVerticalInput();
+        ProcessTranslation();
+        ProcessRotation();
     }
 
-    private void RespondToHorizontalInput()
+    private void ProcessTranslation()
     {
-        float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        float xOffset = xThrow * xSpeed * Time.deltaTime;
+        float xOffset = CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+        float yOffset = CrossPlatformInputManager.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+
         float newXPos = Mathf.Clamp(transform.localPosition.x + xOffset, -xMaxOffset, xMaxOffset);
-
-        transform.localPosition = new Vector3(newXPos, transform.localPosition.y, transform.localPosition.z);
-    }
-
-    private void RespondToVerticalInput()
-    {
-        float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
-        float yOffset = yThrow * ySpeed * Time.deltaTime;
         float newYPos = Mathf.Clamp(transform.localPosition.y + yOffset, -yMaxOffset, yMaxOffset);
 
-        transform.localPosition = new Vector3(transform.localPosition.x, newYPos, transform.localPosition.z);
+        transform.localPosition = new Vector3(newXPos, newYPos, transform.localPosition.z);
+    }
+
+    private void ProcessRotation()
+    {
+        float positionPitch = transform.localPosition.y * positionPitchFactor;
+        float positionYaw = transform.localPosition.x * positionYawFactor;
+
+        float controlPitch = CrossPlatformInputManager.GetAxis("Vertical") * controlPitchFactor;
+        float controlRoll = CrossPlatformInputManager.GetAxis("Horizontal") * controlRollFactor;
+
+        transform.localRotation = Quaternion.Euler(positionPitch + controlPitch, positionYaw, controlRoll);
     }
 }
