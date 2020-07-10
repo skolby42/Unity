@@ -7,12 +7,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Tooltip("In seconds")] float destroyDelay = 1f;
     [SerializeField] [Tooltip("FX prefab")] GameObject deathFX = null;
     [SerializeField] Vector3 deathFXScale = new Vector3(1f, 1f, 1f);
+    [SerializeField] int scorePerHit = 10;
 
     bool isDying = false;
+
+    ScoreBoard scoreBoard;
 
     private void Start()
     {
         AddNonTriggerBoxCollider();
+        scoreBoard = FindObjectOfType<ScoreBoard>();
     }
 
     private void OnParticleCollision(GameObject other)
@@ -31,6 +35,7 @@ public class Enemy : MonoBehaviour
         if (isDying) return;
         isDying = true;
 
+        scoreBoard.ScoreHit(scorePerHit);
         InstantiateDeathFX();
         Destroy(gameObject, destroyDelay);
     }
