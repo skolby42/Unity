@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Tooltip("In ms^-1")] float controlSpeed = 5f;
     [SerializeField] float xMaxOffset = 3f;
     [SerializeField] float yMaxOffset = 2.5f;
+    [SerializeField] GameObject[] guns = null;
 
     [Header("Screen Position Based")]
     [SerializeField] float positionPitchFactor = -5f;
@@ -23,14 +24,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
+        if (controlsEnabled)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+            ProcessFiring();
+        }
     }
 
     private void ProcessTranslation()
     {
-        if (!controlsEnabled) return;
-
         float xOffset = CrossPlatformInputManager.GetAxis("Horizontal") * controlSpeed * Time.deltaTime;
         float yOffset = CrossPlatformInputManager.GetAxis("Vertical") * controlSpeed * Time.deltaTime;
 
@@ -42,8 +45,6 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessRotation()
     {
-        if (!controlsEnabled) return;
-
         float positionPitch = transform.localPosition.y * positionPitchFactor;
         float positionYaw = transform.localPosition.x * positionYawFactor;
 
@@ -53,9 +54,30 @@ public class PlayerController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(positionPitch + controlPitch, positionYaw, controlRoll);
     }
 
+    private void ProcessFiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire"))
+        {
+            SetGunsActive(true);
+        }
+        else
+        {
+            SetGunsActive(false);
+        }
+    }
+
+    private void SetGunsActive(bool active)
+    {
+        foreach (GameObject gun in guns)
+        {
+            ParticleSystem ps = gun.GetComponent<ParticleSystem>();
+            var emission = ps.emission;
+            emission.enabled = active;
+        }
+    }
+
     private void OnPlayerDeath()
     {
-        print("Controls disabled");
         controlsEnabled = false;
     }
 }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] [Tooltip("In seconds")] float destroyDelay = 1f;
+    [SerializeField] [Tooltip("In seconds")] float destroyDelay = 0.5f;
     [SerializeField] [Tooltip("FX prefab")] GameObject deathFX = null;
     [SerializeField] Vector3 deathFXScale = new Vector3(1f, 1f, 1f);
     [SerializeField] int scorePerHit = 10;
+    [SerializeField] int hitsRemaining = 10;
 
     bool isDying = false;
 
@@ -21,7 +22,18 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        StartDeathSequence();
+        ProcessHit();
+
+        if (hitsRemaining <= 0)
+        {
+            StartDeathSequence();
+        }
+    }
+
+    private void ProcessHit()
+    {
+        scoreBoard.ScoreHit(scorePerHit);
+        hitsRemaining--;
     }
 
     private void AddNonTriggerBoxCollider()
@@ -35,7 +47,6 @@ public class Enemy : MonoBehaviour
         if (isDying) return;
         isDying = true;
 
-        scoreBoard.ScoreHit(scorePerHit);
         InstantiateDeathFX();
         Destroy(gameObject, destroyDelay);
     }
