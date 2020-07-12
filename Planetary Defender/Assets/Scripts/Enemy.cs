@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +49,14 @@ public class Enemy : MonoBehaviour
         isDying = true;
 
         InstantiateDeathFX();
+        DisableCollider();
         Destroy(gameObject, destroyDelay);
+    }
+
+    private void DisableCollider()
+    {
+        Collider collider = gameObject.GetComponent<BoxCollider>();
+        collider.enabled = false;
     }
 
     private void InstantiateDeathFX()

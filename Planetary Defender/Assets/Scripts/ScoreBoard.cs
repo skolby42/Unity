@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreBoard : MonoBehaviour
 {
     [SerializeField] int scorePerSecond = 5;
+    [SerializeField] float timeScoreStart = 3f;
     int score;
     Text scoreText;
 
@@ -14,7 +15,7 @@ public class ScoreBoard : MonoBehaviour
         scoreText = GetComponent<Text>();
         UpdateScore();
 
-        InvokeRepeating(nameof(AddTimeScore), 1f, 1f);
+        InvokeRepeating(nameof(AddTimeScore), timeScoreStart, 1f);
     }
 
     public void ScoreHit(int scorePerHit = 10)
