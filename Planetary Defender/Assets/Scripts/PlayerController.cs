@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float xMaxOffset = 3f;
     [SerializeField] float yMaxOffset = 2.5f;
     [SerializeField] GameObject[] guns = null;
+    [SerializeField] float startControlDelay = 2f;
 
     [Header("Screen Position Based")]
     [SerializeField] float positionPitchFactor = -5f;
@@ -20,7 +21,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float controlPitchFactor = -15f;
     [SerializeField] float controlRollFactor = -15f;
 
-    bool controlsEnabled = true;
+    bool controlsEnabled = false;
+
+    private void Start()
+    {
+        SetGunsActive(false);
+        StartCoroutine(SetControlsEnabled(true, startControlDelay));
+    }
 
     void Update()
     {
@@ -74,6 +81,12 @@ public class PlayerController : MonoBehaviour
             var emission = ps.emission;
             emission.enabled = active;
         }
+    }
+
+    private IEnumerator SetControlsEnabled(bool enabled, float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        controlsEnabled = enabled;
     }
 
     private void OnPlayerDeath()

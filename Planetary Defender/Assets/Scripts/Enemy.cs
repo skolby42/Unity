@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Tooltip("FX prefab")] GameObject deathFX = null;
     [SerializeField] Vector3 deathFXScale = new Vector3(1f, 1f, 1f);
     [SerializeField] int scorePerHit = 10;
-    [SerializeField] int hitsRemaining = 10;
+    [SerializeField] int hitsRemaining = 2;
 
     bool isDying = false;
 
