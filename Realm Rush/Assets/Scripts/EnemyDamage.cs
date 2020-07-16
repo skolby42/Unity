@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] int hitPoints = 10;
-    [SerializeField] ParticleSystem hitParticlesPrefab = null;
-    [SerializeField] ParticleSystem deathParticlesPrefab = null;
-    [SerializeField] Vector3 deathParticlePosition;
+    [SerializeField] ParticleSystem hitParticlePrefab = null;
+    [SerializeField] ParticleSystem deathParticlePrefab = null;
+    [SerializeField] Vector3 deathParticlePosition = new Vector3(0f, 0f, 0f);
 
 
     private void OnParticleCollision(GameObject other)
@@ -23,7 +23,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (hitPoints > 0)
         {
-            hitParticlesPrefab.Play();
+            hitParticlePrefab.Play();
         }
         else
         {
@@ -45,8 +45,8 @@ public class EnemyDamage : MonoBehaviour
 
     private void PlayDeathParticles()
     {
-        ParticleSystem deathParticles = Instantiate(deathParticlesPrefab, transform.position + deathParticlePosition, Quaternion.identity);
-        deathParticles.Play();
-        Destroy(deathParticles.gameObject, deathParticles.main.duration);  // Must destroy game object
+        ParticleSystem deathParticle = Instantiate(deathParticlePrefab, transform.position + deathParticlePosition, Quaternion.identity);
+        deathParticle.Play();
+        Destroy(deathParticle.gameObject, deathParticle.main.duration);  // Must destroy game object
     }
 }
