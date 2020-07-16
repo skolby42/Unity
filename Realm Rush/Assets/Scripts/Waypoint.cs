@@ -9,12 +9,7 @@ public class Waypoint : MonoBehaviour
     public Waypoint ExploredFrom { get; set; }
     public bool IsPlaceable { get; set; } = true;
 
-    [SerializeField] Tower towerPrefab = null;
-
     const int gridSize = 10;
-
-    // State
-    private Tower attachedTower = null;
 
 
     public int GetGridSize()
@@ -34,40 +29,20 @@ public class Waypoint : MonoBehaviour
     //{
     //    if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
     //    {
-    //        print(gameObject.name);
+    //        PlaceTower();
     //    }
     //}
 
     private void OnMouseDown()
     {
-        SetTowerAttached();
+        PlaceTower();
     }
 
-    private void SetTowerAttached()
+    private void PlaceTower()
     {
         if (IsPlaceable)
         {
-            AttachTower();
+            FindObjectOfType<TowerFactory>().AddTower(this);
         }
-        else
-        {
-            RemoveTower();
-        }
-    }
-
-    private void AttachTower()
-    {
-        if (towerPrefab == null) return;
-
-        attachedTower = Instantiate(towerPrefab, transform.position, Quaternion.identity, transform);
-        IsPlaceable = false;
-    }
-
-    private void RemoveTower()
-    {
-        if (attachedTower == null) return;
-
-        Destroy(attachedTower.gameObject);
-        IsPlaceable = true;
     }
 }

@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public Waypoint AttachedWaypoint { get; set; }
+
     [SerializeField] Transform objectToPan = null;
     [SerializeField] float attackRange = 50f;
     [SerializeField] ParticleSystem projectileParticle = null;
 
     // State
-    Transform targetEnemy = null;
+    private Transform targetEnemy = null;
 
     void Update()
     {
