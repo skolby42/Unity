@@ -3591,7 +3591,7 @@ GameObject:
   - component: {fileID: 1011885624}
   - component: {fileID: 1011885623}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: SpawnedEnemiesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3613,8 +3613,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 241, y: -96}
-  m_SizeDelta: {x: 325, y: 120}
+  m_AnchoredPosition: {x: 149, y: -96}
+  m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011885623
 MonoBehaviour:
@@ -3636,7 +3636,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ebdaad0c69cf0644a8fb33ed95b1e5e3, type: 3}
+    m_Font: {fileID: 12800000, guid: fd4abdbf8ef2d2d46bb37dc956634ebe, type: 3}
     m_FontSize: 90
     m_FontStyle: 0
     m_BestFit: 0
@@ -6485,6 +6485,7 @@ MonoBehaviour:
     type: 3}
   secondsBetweenSpawns: 1
   enemyParentTransform: {fileID: 1643143624}
+  spawnedEnemiesText: {fileID: 1011885623}
 --- !u!1001 &1659162897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6954,8 +6955,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -211, y: -96}
-  m_SizeDelta: {x: 325, y: 120}
+  m_AnchoredPosition: {x: -134, y: -96}
+  m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774133653
 MonoBehaviour:
@@ -6977,7 +6978,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ebdaad0c69cf0644a8fb33ed95b1e5e3, type: 3}
+    m_Font: {fileID: 12800000, guid: fd4abdbf8ef2d2d46bb37dc956634ebe, type: 3}
     m_FontSize: 90
     m_FontStyle: 0
     m_BestFit: 0
@@ -7936,6 +7937,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2062379946}
     m_Modifications:
+    - target: {fileID: 1519040528, guid: a467c20795e0fed40b0d21d2bebe3b04, type: 3}
+      propertyPath: HealthText
+      value: 
+      objectReference: {fileID: 1774133653}
     - target: {fileID: 1716733542366808, guid: a467c20795e0fed40b0d21d2bebe3b04, type: 3}
       propertyPath: m_Name
       value: Friendly_Base
