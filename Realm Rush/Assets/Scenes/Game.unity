@@ -708,6 +708,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 709157682}
     m_Modifications:
+    - target: {fileID: 1436881726, guid: 3a73a50bc9b6c7d4a9917970e1371728, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436881726, guid: 3a73a50bc9b6c7d4a9917970e1371728, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 592120011009079592, guid: 3a73a50bc9b6c7d4a9917970e1371728,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4802,7 +4810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1480178429, guid: 9647f4959ad649d478dc0d6dcc6cb43b, type: 3}
-  secondsBetweenSpawns: 8
+  secondsBetweenSpawns: 4
 --- !u!1 &1670336643
 GameObject:
   m_ObjectHideFlags: 0
@@ -6094,6 +6102,14 @@ PrefabInstance:
     - target: {fileID: 1436881723, guid: 3a73a50bc9b6c7d4a9917970e1371728, type: 3}
       propertyPath: m_Name
       value: Shells
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436881726, guid: 3a73a50bc9b6c7d4a9917970e1371728, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436881726, guid: 3a73a50bc9b6c7d4a9917970e1371728, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 592120011009079592, guid: 3a73a50bc9b6c7d4a9917970e1371728,
         type: 3}
