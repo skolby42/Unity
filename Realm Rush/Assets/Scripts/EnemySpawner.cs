@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(secondsBetweenSpawns);
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            Instantiate(enemyPrefab, transform.position, Quaternion.identity, gameObject.transform);
         }
     }
 }

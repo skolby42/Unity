@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950964305028271213}
-  - component: {fileID: 354661898025181364}
+  - component: {fileID: 2418989542268842985}
   - component: {fileID: 8857354209482122981}
   - component: {fileID: 1960345850327981116}
   m_Layer: 0
@@ -128,7 +128,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &354661898025181364
+--- !u!65 &2418989542268842985
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,8 +139,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: -5, z: 0}
 --- !u!114 &8857354209482122981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9481c48cc275294d943d142c3caf70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 592120011009079593, guid: 3a73a50bc9b6c7d4a9917970e1371728,
+    type: 3}
 --- !u!1 &3882485422626076546
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +178,7 @@ GameObject:
   - component: {fileID: 3882485422626076550}
   - component: {fileID: 3882485422626076551}
   - component: {fileID: 3882485422626076548}
-  - component: {fileID: 3882485422626076549}
+  - component: {fileID: 6568969753477530306}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -246,7 +248,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3882485422626076549
+--- !u!64 &6568969753477530306
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

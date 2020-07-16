@@ -29,9 +29,8 @@ public class Pathfinder : MonoBehaviour
     private void CalculatePath()
     {
         LoadBlocks();
-        ColorStartAndEnd();
         BreadthFirstSearch();
-        GeneratePath();
+        CreatePath();
     }
 
     private void LoadBlocks()
@@ -48,15 +47,8 @@ public class Pathfinder : MonoBehaviour
             else
             {
                 Debug.LogWarning($"Skipping overlapping waypoint: {waypoint}");
-                waypoint.SetTopColor(Color.red);
             }
         }
-    }
-
-    private void ColorStartAndEnd()
-    {
-        startWaypoint.SetTopColor(Color.green);
-        endWaypoint.SetTopColor(Color.red);
     }
 
     private void BreadthFirstSearch()
@@ -105,16 +97,24 @@ public class Pathfinder : MonoBehaviour
         neighbor.ExploredFrom = searchCenter;
     }
 
-    private void GeneratePath()
+    private void CreatePath()
     {
-        path.Add(endWaypoint);
+        AddPathWaypoint(endWaypoint);
+
         Waypoint previous = endWaypoint.ExploredFrom;
         while (previous != startWaypoint)
         {
-            path.Add(previous);
+            AddPathWaypoint(previous);
             previous = previous.ExploredFrom;
         }
-        path.Add(startWaypoint);
+
+        AddPathWaypoint(startWaypoint);
         path.Reverse();
+    }
+
+    private void AddPathWaypoint(Waypoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.IsPlaceable = false;
     }
 }

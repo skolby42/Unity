@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Waypoint : MonoBehaviour
 {
-    const int gridSize = 10;
-
     public bool IsExplored { get; set; }
     public Waypoint ExploredFrom { get; set; }
+    public bool IsPlaceable { get; set; } = true;
+
+    [SerializeField] Tower towerPrefab = null;
+
+    const int gridSize = 10;
+
+    // State
+    private Tower attachedTower = null;
+
 
     public int GetGridSize()
     {
@@ -22,9 +30,44 @@ public class Waypoint : MonoBehaviour
         );
     }
 
-    public void SetTopColor(Color color)
+    //private void OnMouseOver()
+    //{
+    //    if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+    //    {
+    //        print(gameObject.name);
+    //    }
+    //}
+
+    private void OnMouseDown()
     {
-        MeshRenderer meshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        meshRenderer.material.color = color;
+        SetTowerAttached();
+    }
+
+    private void SetTowerAttached()
+    {
+        if (IsPlaceable)
+        {
+            AttachTower();
+        }
+        else
+        {
+            RemoveTower();
+        }
+    }
+
+    private void AttachTower()
+    {
+        if (towerPrefab == null) return;
+
+        attachedTower = Instantiate(towerPrefab, transform.position, Quaternion.identity, transform);
+        IsPlaceable = false;
+    }
+
+    private void RemoveTower()
+    {
+        if (attachedTower == null) return;
+
+        Destroy(attachedTower.gameObject);
+        IsPlaceable = true;
     }
 }
