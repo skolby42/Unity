@@ -2657,6 +2657,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4693498050140635953, guid: 40fbe9ba9f157a0499a192e31dc932bc,
+        type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693498050140635964, guid: 40fbe9ba9f157a0499a192e31dc932bc,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4693498050140635967, guid: 40fbe9ba9f157a0499a192e31dc932bc,
         type: 3}
       propertyPath: m_Name
