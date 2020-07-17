@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform objectToPan = null;
     [SerializeField] float attackRange = 50f;
     [SerializeField] ParticleSystem projectileParticle = null;
+    [SerializeField] AudioClip firingSFX = null;
 
     // State
     private Transform targetEnemy = null;

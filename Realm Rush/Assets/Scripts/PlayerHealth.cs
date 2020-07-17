@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int hitPoints = 10;
     [SerializeField] Text HealthText = null;
+    [SerializeField] AudioClip playerDamageSFX = null;
 
     private void Start()
     {
@@ -17,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ProcessHit();
+
+        GetComponent<AudioSource>().PlayOneShot(playerDamageSFX);
 
         if (hitPoints <= 0)
         {
@@ -35,6 +38,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void KillPlayer()
     {
-        print("I'm dead!");
+        //print("I'm dead!");
     }
 }

@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float movementPeriod = 0.5f;
     [SerializeField] ParticleSystem goalParticlePrefab = null;
-    [SerializeField] Vector3 bombParticlePosition = new Vector3(0f, 0f, 0f);
+    [SerializeField] Vector3 goalParticlePosition = new Vector3(0f, 0f, 0f);
 
     Coroutine pathCoroutine;
 
@@ -37,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void SelfDestruct()
     {
-        var goalParticle = Instantiate(goalParticlePrefab, transform.position + bombParticlePosition, Quaternion.identity);
+        var goalParticle = Instantiate(goalParticlePrefab, transform.position + goalParticlePosition, Quaternion.identity);
         goalParticle.Play();
         Destroy(goalParticle.gameObject, goalParticle.main.duration);
 
