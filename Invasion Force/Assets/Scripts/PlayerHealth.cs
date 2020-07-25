@@ -15,7 +15,8 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            print("You're dead!");
+            DeathHandler deathHandler = FindObjectOfType<DeathHandler>();
+            deathHandler.HandleDeath();
         }
     }
 }

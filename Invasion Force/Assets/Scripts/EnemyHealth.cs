@@ -8,8 +8,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        BroadcastMessage("OnDamageTaken");
         hitPoints -= damage;
-        print($"Ouch, you shot me!  I have {hitPoints} hit points remaining");
 
         if (hitPoints <= 0)
         {
