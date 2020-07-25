@@ -6,15 +6,18 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target = null;
     [SerializeField] float chaseRange = 5f;
-    
+    [SerializeField] float turnSpeed = 5f;
+
+    private PlayerHealth target;
+
     NavMeshAgent navMeshAgent;
     bool isProvoked;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        target = FindObjectOfType<PlayerHealth>();
     }
 
     void Update()
@@ -23,7 +26,7 @@ public class EnemyAI : MonoBehaviour
         {
             EngageTarget();
         }
-        else if (Vector3.Distance(target.position, transform.position) <= chaseRange)
+        else if (Vector3.Distance(target.transform.position, transform.position) <= chaseRange)
         {
             isProvoked = true;
         }
@@ -31,24 +34,36 @@ public class EnemyAI : MonoBehaviour
 
     private void EngageTarget()
     {
-        if (Vector3.Distance(target.position, transform.position) >= navMeshAgent.stoppingDistance)
+        FaceTarget();
+
+        if (Vector3.Distance(target.transform.position, transform.position) >= navMeshAgent.stoppingDistance)
         {
             ChaseTarget();
         }
         else
         {
-            AttackTarget();
+            AttackTarget();    
         }
     }
 
     private void ChaseTarget()
     {
-        navMeshAgent.SetDestination(target.position);
+        GetComponent<Animator>().SetBool("Attack", false);
+        GetComponent<Animator>().SetBool("Move", true);
+        
+        navMeshAgent.SetDestination(target.transform.position);
     }
 
     private void AttackTarget()
     {
-        print("Attacking target");
+        GetComponent<Animator>().SetBool("Attack", true);
+    }
+
+    private void FaceTarget()
+    {
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     private void OnDrawGizmosSelected()
