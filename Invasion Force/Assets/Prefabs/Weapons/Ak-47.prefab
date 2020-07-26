@@ -287,10 +287,12 @@ MonoBehaviour:
   FPCamera: {fileID: 0}
   range: 100
   damagePerHit: 20
+  fireDelay: 0.5
   muzzleFlash: {fileID: 4068742967110532550}
   hitEffectPrefab: {fileID: 2882596614287467538, guid: 434c7f9d79a78c54c94c56f179557b59,
     type: 3}
   ammoSlot: {fileID: 0}
+  ammoType: 1
 --- !u!1001 &1025250563914812254
 PrefabInstance:
   m_ObjectHideFlags: 0

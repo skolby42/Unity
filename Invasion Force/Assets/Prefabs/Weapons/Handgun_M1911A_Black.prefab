@@ -118,6 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8578270407721863753}
+  - component: {fileID: 4869461310064634773}
   m_Layer: 0
   m_Name: Handgun_M1911A_Black
   m_TagString: Untagged
@@ -141,6 +142,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4869461310064634773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576338122082091623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e765f3f0ee8cd4cb305d0f4da2227d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FPCamera: {fileID: 0}
+  range: 25
+  damagePerHit: 15
+  fireDelay: 0.25
+  muzzleFlash: {fileID: 3443021416081285882}
+  hitEffectPrefab: {fileID: 2882596614287467538, guid: 434c7f9d79a78c54c94c56f179557b59,
+    type: 3}
+  ammoSlot: {fileID: 0}
+  ammoType: 0
 --- !u!1 &8576379359899558297
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +575,12 @@ PrefabInstance:
 --- !u!4 &3249419658097564116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4977485751071522, guid: e802c9c5b472d2345a808aca4bc81014,
+    type: 3}
+  m_PrefabInstance: {fileID: 3245387829655808758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3443021416081285882 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198719912503724044, guid: e802c9c5b472d2345a808aca4bc81014,
     type: 3}
   m_PrefabInstance: {fileID: 3245387829655808758}
   m_PrefabAsset: {fileID: 0}

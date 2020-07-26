@@ -342,8 +342,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee72cddbdc11ac4fb7f5c9c44421ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAmount: 100
-  maxAmmo: 100
+  ammoSlots:
+  - ammoType: 0
+    ammoAmount: 10
+    maxAmmo: 60
+  - ammoType: 1
+    ammoAmount: 20
+    maxAmmo: 120
+  - ammoType: 2
+    ammoAmount: 30
+    maxAmmo: 200
 --- !u!114 &4307919378873344806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +419,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 411683073648925991}
+  - {fileID: 2757075260111101795}
   - {fileID: 950975180}
   - {fileID: 1868878439}
   - {fileID: 688248840}
@@ -492,27 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d014e5934407740b26687fc92f0c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: 2
---- !u!114 &1054070870042743999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414316847827735817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e765f3f0ee8cd4cb305d0f4da2227d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FPCamera: {fileID: 2000000}
-  range: 25
-  damagePerHit: 15
-  fireDelay: 0.25
-  muzzleFlash: {fileID: 6733626169191904660}
-  hitEffectPrefab: {fileID: 2882596614287467538, guid: 434c7f9d79a78c54c94c56f179557b59,
-    type: 3}
-  ammoSlot: {fileID: 5883149153587270535}
+  currentWeapon: 0
 --- !u!1001 &4988877865259971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -543,6 +531,10 @@ PrefabInstance:
     - target: {fileID: 4988877457311679, guid: 10defe8142892514f96f1594ed437568, type: 3}
       propertyPath: range
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988877457311679, guid: 10defe8142892514f96f1594ed437568, type: 3}
+      propertyPath: ammoType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4988877479168971, guid: 10defe8142892514f96f1594ed437568, type: 3}
       propertyPath: m_LocalPosition.x
@@ -656,6 +648,11 @@ PrefabInstance:
       propertyPath: range
       value: 125
       objectReference: {fileID: 0}
+    - target: {fileID: 380939090525110916, guid: ed6263dfd0c2d1749947b1db30d1eb3a,
+        type: 3}
+      propertyPath: ammoType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 380939090852340451, guid: ed6263dfd0c2d1749947b1db30d1eb3a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -719,7 +716,7 @@ PrefabInstance:
     - target: {fileID: 380939090852839107, guid: ed6263dfd0c2d1749947b1db30d1eb3a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 380939091116528397, guid: ed6263dfd0c2d1749947b1db30d1eb3a,
         type: 3}
@@ -838,6 +835,11 @@ PrefabInstance:
       propertyPath: fireDelay
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4068742965867839616, guid: 6607d6d513ef85649a384a9f5182de04,
+        type: 3}
+      propertyPath: ammoType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6607d6d513ef85649a384a9f5182de04, type: 3}
 --- !u!1 &950609644 stripped
@@ -852,57 +854,42 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4068742966442335403}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8267119006518040430
+--- !u!1001 &5858965597101053226
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2115209570}
     m_Modifications:
-    - target: {fileID: 3443021416081285882, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
+    - target: {fileID: 4869461310064634773, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443021416081285882, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
+      propertyPath: FPCamera
+      value: 
+      objectReference: {fileID: 2000000}
+    - target: {fileID: 4869461310064634773, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443021416081285882, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-        type: 3}
-      propertyPath: stopAction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443069300516989332, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: ammoSlot
+      value: 
+      objectReference: {fileID: 5883149153587270535}
     - target: {fileID: 8576338122082091623, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
       propertyPath: m_Name
       value: Handgun_M1911A_Black
       objectReference: {fileID: 0}
-    - target: {fileID: 8576338122082091623, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
+    - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
         type: 3}
@@ -944,40 +931,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c, type: 3}
---- !u!1 &414316847827735817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8576338122082091623, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8267119006518040430}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6733626169191904660 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3443021416081285882, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8267119006518040430}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &411683073648925991 stripped
+--- !u!4 &2757075260111101795 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8578270407721863753, guid: c537828cf5d0f6f4788cdaa0d3b0dd5c,
     type: 3}
-  m_PrefabInstance: {fileID: 8267119006518040430}
+  m_PrefabInstance: {fileID: 5858965597101053226}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9196122253361229618
 PrefabInstance:
@@ -1020,6 +980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: range
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196122252281320646, guid: 8a0e862fee8744c4bb4c32e512186d60,
+        type: 3}
+      propertyPath: ammoType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9196122252494477035, guid: 8a0e862fee8744c4bb4c32e512186d60,
         type: 3}

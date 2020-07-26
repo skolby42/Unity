@@ -13,8 +13,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash = null;
     [SerializeField] GameObject hitEffectPrefab = null;
     [SerializeField] Ammo ammoSlot = null;
+    [SerializeField] AmmoType ammoType = AmmoType.Pistol;
 
     bool canFire = true;
+
+    private void OnEnable()
+    {
+        canFire = true;
+    }
 
     void Update()
     {
@@ -26,11 +32,11 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        if (ammoSlot.GetCurrentAmmo() <= 0) return;
+        if (ammoSlot.GetCurrentAmmo(ammoType) <= 0) return;
 
         PlayMuzzleFlash();
         ProcessRaycast();
-        ammoSlot.ReduceCurrentAmmo();
+        ammoSlot.ReduceCurrentAmmo(ammoType);
 
         canFire = false;
         StartCoroutine(ResetFiring());
