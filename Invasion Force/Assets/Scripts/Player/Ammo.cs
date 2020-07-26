@@ -23,6 +23,14 @@ public partial class Ammo : MonoBehaviour
         ammoSlot.ammoAmount = Mathf.Clamp(ammoSlot.ammoAmount - value, 0, ammoSlot.maxAmmo);
     }
 
+    public void IncreaseCurrentAmmo(AmmoType ammoType, int newAmount)
+    {
+        AmmoSlot slot = GetAmmoSlot(ammoType);
+        if (slot == null) return;
+
+        slot.AddAmmo(newAmount);
+    }
+
     private AmmoSlot GetAmmoSlot(AmmoType ammoType)
     {
         foreach (var slot in ammoSlots)
