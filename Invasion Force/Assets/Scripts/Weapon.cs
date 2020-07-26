@@ -9,13 +9,16 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera FPCamera = null;
     [SerializeField] float range = 100f;
     [SerializeField] float damagePerHit = 10f;
+    [SerializeField] float fireDelay = 0.5f;
     [SerializeField] ParticleSystem muzzleFlash = null;
     [SerializeField] GameObject hitEffectPrefab = null;
-    [SerializeField] Ammo ammoSlot;
+    [SerializeField] Ammo ammoSlot = null;
+
+    bool canFire = true;
 
     void Update()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire1"))
+        if (CrossPlatformInputManager.GetButtonDown("Fire1") && canFire)
         {
             Shoot();
         }
@@ -28,6 +31,9 @@ public class Weapon : MonoBehaviour
         PlayMuzzleFlash();
         ProcessRaycast();
         ammoSlot.ReduceCurrentAmmo();
+
+        canFire = false;
+        StartCoroutine(ResetFiring());
     }
 
     private void PlayMuzzleFlash()
@@ -52,5 +58,11 @@ public class Weapon : MonoBehaviour
     {
         GameObject hitEffect = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(hitEffect, 1f);
+    }
+
+    private IEnumerator ResetFiring()
+    {
+        yield return new WaitForSeconds(fireDelay);
+        canFire = true;
     }
 }

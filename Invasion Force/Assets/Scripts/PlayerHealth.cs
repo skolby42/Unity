@@ -11,7 +11,6 @@ public class PlayerHealth : MonoBehaviour
         if (hitPoints > 0)
         {
             hitPoints -= damage;
-            print($"Taking damage! {hitPoints} hit points remaining");
         }
         else
         {
