@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
     bool isProvoked;
+    bool isDead;
 
     void Start()
     {
@@ -22,6 +23,8 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+
         if (isProvoked)
         {
             EngageTarget();
@@ -35,6 +38,14 @@ public class EnemyAI : MonoBehaviour
     public void OnDamageTaken()
     {
         isProvoked = true;
+    }
+
+    public void OnEnemyDeath()
+    {
+        isDead = true;
+        GetComponent<Animator>().SetTrigger("Dead");
+        navMeshAgent.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     private void EngageTarget()

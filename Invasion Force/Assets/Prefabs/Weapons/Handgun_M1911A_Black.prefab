@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 0}
-  range: 25
+  range: 40
   damagePerHit: 15
   fireDelay: 0.25
   muzzleFlash: {fileID: 3443021416081285882}
