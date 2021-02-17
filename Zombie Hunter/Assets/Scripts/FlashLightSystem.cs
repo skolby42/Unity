@@ -24,12 +24,16 @@ public class FlashLightSystem : MonoBehaviour
 
     private void DecreaseLightAngle()
     {
+        if (myLight.spotAngle <= minAngle) return;
+
         var angle = myLight.spotAngle - Time.deltaTime * angleDecay;
         myLight.spotAngle = Mathf.Clamp(minAngle, angle, myLight.spotAngle);
     }
 
     private void DecreaseLightIntensity()
     {
+        if (myLight.intensity <= 0) return;
+
         var intensity = myLight.intensity - Time.deltaTime * lightDecay;
         myLight.intensity = Mathf.Clamp(0f, intensity, myLight.intensity);
     }
