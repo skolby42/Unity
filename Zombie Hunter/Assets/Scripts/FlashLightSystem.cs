@@ -7,7 +7,7 @@ public class FlashLightSystem : MonoBehaviour
 {
     [SerializeField] float lightDecay = 0.1f;
     [SerializeField] float angleDecay = 1.0f;
-    [SerializeField] float minAngle = 1.0f;
+    [SerializeField] float minAngle = 5.0f;
 
     Light myLight;
 
@@ -25,14 +25,12 @@ public class FlashLightSystem : MonoBehaviour
     private void DecreaseLightAngle()
     {
         var angle = myLight.spotAngle - Time.deltaTime * angleDecay;
-        Mathf.Clamp(angle, minAngle, myLight.spotAngle);
-        myLight.spotAngle = angle;
+        myLight.spotAngle = Mathf.Clamp(minAngle, angle, myLight.spotAngle);
     }
 
     private void DecreaseLightIntensity()
     {
         var intensity = myLight.intensity - Time.deltaTime * lightDecay;
-        Mathf.Clamp(intensity, 0f, myLight.intensity);
-        myLight.intensity = intensity;
+        myLight.intensity = Mathf.Clamp(0f, intensity, myLight.intensity);
     }
 }
