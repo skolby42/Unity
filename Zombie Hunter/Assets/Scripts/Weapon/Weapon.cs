@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitEffectPrefab = null;
     [SerializeField] Ammo ammoSlot = null;
     [SerializeField] AmmoType ammoType = AmmoType.Pistol;
+    [SerializeField] TextMeshProUGUI ammoText;
 
     bool canFire = true;
 
@@ -24,10 +25,17 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        DisplayAmmo();
+
         if (CrossPlatformInputManager.GetButtonDown("Fire1") && canFire)
         {
             Shoot();
         }
+    }
+
+    private void DisplayAmmo()
+    {
+        ammoText.text = $"{ammoSlot.GetCurrentAmmo(ammoType)}";
     }
 
     private void Shoot()
